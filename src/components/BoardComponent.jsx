@@ -2,56 +2,62 @@ import React, { useState, useEffect } from "react";
 import CellComponent from "./CellComponent";
 
 function BoardComponent() {
-  // State to store the board
+  // State to store the board (0=blank, 1=cross, 2=nought))
   const [board, setBoard] = useState([
     [0, 0, 0],
     [0, 0, 0],
     [0, 0, 0],
   ]);
 
-  // // useEffect to fetch the joke
-  // useEffect(() => {
-  //     fetch('https://api.chucknorris.io/jokes/random')
-  //         .then(response => response.json())
-  //         .then(data => setJoke(data.value))
-  //         .catch(error => console.error('Error fetching joke:', error));
-  // }, []); // Empty dependency array means this runs once on mount
+  // State to store next player (1=cross, 2=nought)
+  const [player, setPlayer] = useState(1);
+
+  function handleClick() {
+    const eventTarget = event.target;
+
+    if (eventTarget.id.substring(0, 4) === "cell") {
+      const row = parseInt(eventTarget.id.substring(4, 5));
+      const col = parseInt(eventTarget.id.substring(5, 6));
+
+      alert("" + row + "" + col);
+    }
+  }
 
   // Render the board
   return (
-    <table id="board">
+    <table id="board" onClick={handleClick}>
       <tbody>
         <tr>
           <td>
-            <CellComponent value={board[0][0]} />
+            <CellComponent id="cell00" value={board[0][0]} />
           </td>
           <td>
-            <CellComponent value={board[0][1]} />
+            <CellComponent id="cell01" value={board[0][1]} />
           </td>
           <td>
-            <CellComponent value={board[0][2]} />
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <CellComponent value={board[1][0]} />
-          </td>
-          <td>
-            <CellComponent value={board[1][1]} />
-          </td>
-          <td>
-            <CellComponent value={board[1][2]} />
+            <CellComponent id="cell02" value={board[0][2]} />
           </td>
         </tr>
         <tr>
           <td>
-            <CellComponent value={board[2][0]} />
+            <CellComponent id="cell10" value={board[1][0]} />
           </td>
           <td>
-            <CellComponent value={board[2][1]} />
+            <CellComponent id="cell11" value={board[1][1]} />
           </td>
           <td>
-            <CellComponent value={board[2][2]} />
+            <CellComponent id="cell12" value={board[1][2]} />
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <CellComponent id="cell20" value={board[2][0]} />
+          </td>
+          <td>
+            <CellComponent id="cell21" value={board[2][1]} />
+          </td>
+          <td>
+            <CellComponent id="cell22" value={board[2][2]} />
           </td>
         </tr>
       </tbody>

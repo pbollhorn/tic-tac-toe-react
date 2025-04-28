@@ -19,9 +19,9 @@ function getImageForValue(value) {
   }
 }
 
-function CellComponent({ value, handleClick }) {
+function CellComponent({ id, value }) {
   // Render the cell
-  return <img src={getImageForValue(value)}></img>;
+  return <img id={id} src={getImageForValue(value)}></img>;
 }
 
 export default CellComponent;
