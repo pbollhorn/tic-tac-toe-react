@@ -14,13 +14,18 @@ function BoardComponent() {
 
   function handleClick() {
     const eventTarget = event.target;
+    if (eventTarget.id.substring(0, 4) !== "cell") return;
 
-    if (eventTarget.id.substring(0, 4) === "cell") {
-      const row = parseInt(eventTarget.id.substring(4, 5));
-      const col = parseInt(eventTarget.id.substring(5, 6));
+    const row = parseInt(eventTarget.id.substring(4, 5));
+    const col = parseInt(eventTarget.id.substring(5, 6));
 
-      alert("" + row + "" + col);
-    }
+    if (board[row][col] !== 0) return;
+
+    const boardDeepCopy = board.map(row => [...row]);
+
+    boardDeepCopy[row][col] = player;
+    setBoard(boardDeepCopy);
+    setPlayer((player % 2) + 1);
   }
 
   // Render the board
