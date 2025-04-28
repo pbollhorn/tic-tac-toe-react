@@ -1,23 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
+import blank from "../assets/blank.png";
+import cross from "../assets/cross.png";
+import nought from "../assets/nought.png";
 
-function CellComponent() {
-    // State to store the joke
-    const [joke, setJoke] = useState('');
-
-    // useEffect to fetch the joke
-    useEffect(() => {
-        fetch('https://api.chucknorris.io/jokes/random')
-            .then(response => response.json())
-            .then(data => setJoke(data.value))
-            .catch(error => console.error('Error fetching joke:', error));
-    }, []); // Empty dependency array means this runs once on mount
-
-    // Render the joke
-    return (
-        <div>
-            <p>{joke}</p>
-        </div>
-    );
+function CellComponent({ image, handleClick }) {
+  // Render the cell
+  return <img src={cross}></img>;
 }
 
-export default JokeComponent;
+export default CellComponent;
