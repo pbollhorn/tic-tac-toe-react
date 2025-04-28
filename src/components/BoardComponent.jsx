@@ -2,8 +2,12 @@ import React, { useState, useEffect } from "react";
 import CellComponent from "./CellComponent";
 
 function BoardComponent() {
-  // // State to store the joke
-  // const [joke, setJoke] = useState('');
+  // State to store the board
+  const [board, setBoard] = useState([
+    [0, 0, 0],
+    [0, 0, 0],
+    [0, 0, 0],
+  ]);
 
   // // useEffect to fetch the joke
   // useEffect(() => {
@@ -16,39 +20,41 @@ function BoardComponent() {
   // Render the board
   return (
     <table id="board">
-      <tr>
-        <td>
-          <CellComponent />
-        </td>
-        <td>
-          <CellComponent />
-        </td>
-        <td>
-          <CellComponent />
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <CellComponent />
-        </td>
-        <td>
-          <CellComponent />
-        </td>
-        <td>
-          <CellComponent />
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <CellComponent />
-        </td>
-        <td>
-          <CellComponent />
-        </td>
-        <td>
-          <CellComponent />
-        </td>
-      </tr>
+      <tbody>
+        <tr>
+          <td>
+            <CellComponent value={board[0][0]} />
+          </td>
+          <td>
+            <CellComponent value={board[0][1]} />
+          </td>
+          <td>
+            <CellComponent value={board[0][2]} />
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <CellComponent value={board[1][0]} />
+          </td>
+          <td>
+            <CellComponent value={board[1][1]} />
+          </td>
+          <td>
+            <CellComponent value={board[1][2]} />
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <CellComponent value={board[2][0]} />
+          </td>
+          <td>
+            <CellComponent value={board[2][1]} />
+          </td>
+          <td>
+            <CellComponent value={board[2][2]} />
+          </td>
+        </tr>
+      </tbody>
     </table>
   );
 }
