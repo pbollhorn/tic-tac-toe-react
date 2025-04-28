@@ -1,27 +1,21 @@
-import React, { useState, useEffect } from "react";
-import blank from "../assets/blank.png";
-import cross from "../assets/cross.png";
-import nought from "../assets/nought.png";
+import React from "react";
 
-function getImageForValue(value) {
+function getImageSrcForValue(value) {
   switch (value) {
     case 0:
-      return blank;
-      break;
+      return "../public/blank.png";
 
     case 1:
-      return cross;
-      break;
+      return "../public/cross.png";
 
     case 2:
-      return nought;
-      break;
+      return "../public/nought.png";
   }
 }
 
 function CellComponent({ id, value }) {
   // Render the cell
-  return <img id={id} src={getImageForValue(value)}></img>;
+  return <img id={id} src={getImageSrcForValue(value)}></img>;
 }
 
 export default CellComponent;

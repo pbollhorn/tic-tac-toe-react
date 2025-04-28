@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import CellComponent from "./CellComponent";
 
 function BoardComponent() {
@@ -9,22 +9,22 @@ function BoardComponent() {
     [0, 0, 0],
   ]);
 
-  // State to store next player (1=cross, 2=nought)
+  // State to store player (1=cross, 2=nought)
   const [player, setPlayer] = useState(1);
 
-  function handleClick() {
-    const eventTarget = event.target;
-    if (eventTarget.id.substring(0, 4) !== "cell") return;
+  function handleClick(event) {
+    const id = event.target.id;
+    if (id.substring(0, 4) !== "cell") return;
 
-    const row = parseInt(eventTarget.id.substring(4, 5));
-    const col = parseInt(eventTarget.id.substring(5, 6));
+    const row = parseInt(id.substring(4, 5));
+    const col = parseInt(id.substring(5, 6));
 
     if (board[row][col] !== 0) return;
 
-    const boardDeepCopy = board.map(row => [...row]);
-
+    const boardDeepCopy = board.map((row) => [...row]);
     boardDeepCopy[row][col] = player;
     setBoard(boardDeepCopy);
+    
     setPlayer((player % 2) + 1);
   }
 
