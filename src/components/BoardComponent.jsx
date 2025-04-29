@@ -1,14 +1,30 @@
 import React, { useState } from "react";
 import CellComponent from "./CellComponent";
 
-function BoardComponent() {
-  // The board is represented by a 1D array, whose indexes represents the 2D board like this:
-  // 0 | 1 | 2
-  // ----------
-  // 3 | 4 | 5
-  // ----------
-  // 6 | 7 | 8
+// The cells on the board is a 1D array, whose indexes represents the 2D board like this:
+// 0 | 1 | 2
+// ----------
+// 3 | 4 | 5
+// ----------
+// 6 | 7 | 8
+//
+// The values of the cells can be:
+// 0: blank
+// 1: cross
+// 2: nought
 
+const winCombos = [
+  [0, 1, 2], // row
+  [3, 4, 5], // row
+  [6, 7, 8], // row
+  [0, 3, 6], // column
+  [1, 4, 7], // column
+  [2, 5, 8], // column
+  [0, 4, 8], // diagonal
+  [2, 4, 6], // diagonal
+];
+
+function BoardComponent() {
   // State to store the board (0=blank, 1=cross, 2=nought))
   const [board, setBoard] = useState([0, 0, 0, 0, 0, 0, 0, 0, 0]);
 
@@ -25,6 +41,15 @@ function BoardComponent() {
     const boardDeepCopy = [...board];
     boardDeepCopy[cellNumber] = player;
     setBoard(boardDeepCopy);
+
+    // Check for win
+    for (let i = 0; i < winCombos.length; i++) {
+      const cellsToCheck = winCombos[i].map((cell) => boardDeepCopy[cell]);
+
+      if (cellsToCheck.every((value) => value === player)) {
+        // add 1 to change image to winner image
+      }
+    }
 
     setPlayer((player % 2) + 1);
   }

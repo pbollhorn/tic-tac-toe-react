@@ -1,6 +1,6 @@
 import React from "react";
 
-function getImageSrcForValue(value) {
+function getImageSrc(value) {
   switch (value) {
     case 0:
       return "../public/blank.png";
@@ -15,7 +15,7 @@ function getImageSrcForValue(value) {
 
 function CellComponent({ id, value }) {
   // Render the cell
-  return <img id={id} src={getImageSrcForValue(value)}></img>;
+  return <img id={id} src={getImageSrc(value)}></img>;
 }
 
 export default CellComponent;
